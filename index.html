@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>Kütleçekim: Newton vs Einstein</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar glass-panel">
+            <div class="lang-toggle-container">
+                <button id="btn-tr" class="lang-btn active">TR</button>
+                <button id="btn-en" class="lang-btn">EN</button>
+            </div>
+
+            <div class="sidebar-header">
+                <h1 data-i18n="header.title">Gravity Sim</h1>
+                <p data-i18n="header.subtitle">Newton vs Genel Görelilik</p>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="star-mass" data-i18n="controls.starMass">Yıldız Kütlesi</label>
+                    <input type="range" id="star-mass" min="1000" max="10000" value="5000">
+                    <span class="value-display" id="star-mass-val" contenteditable="true">5000</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="sim-speed" data-i18n="controls.simSpeed">Simülasyon Hızı</label>
+                    <input type="range" id="sim-speed" min="0.1" max="25" value="6.0" step="0.1">
+                    <span class="value-display" id="sim-speed-val" contenteditable="true">6.0x</span>
+                    <div id="speed-warning" class="warning-text" style="display:none;"
+                        data-i18n="controls.speedWarning">⚠️ Yüksek hızda fiziksel sapmalar olabilir!</div>
+                </div>
+
+                <div class="advanced-toggle" id="advanced-toggle" data-i18n="controls.advancedToggle">
+                    Gelişmiş Ayarlar <span>▼</span>
+                </div>
+
+                <div class="advanced-section" id="advanced-section">
+                    <div class="control-group">
+                        <label for="planet-v" data-i18n="controls.planetV">İlk Hız (Gezegen)</label>
+                        <input type="range" id="planet-v" min="1" max="10" value="4.8" step="0.1">
+                        <span class="value-display" id="planet-v-val" contenteditable="true">4.8</span>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="relativity-mult" data-i18n="controls.relativityMult">Görelilik Etkisi
+                            Çarpanı</label>
+                        <input type="range" id="relativity-mult" min="0" max="400" value="200">
+                        <span class="value-display" id="relativity-mult-val" contenteditable="true">200</span>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="planet-dist" data-i18n="controls.planetDist">Gezegen Uzaklığı</label>
+                        <input type="range" id="planet-dist" min="100" max="275" value="150">
+                        <span class="value-display" id="planet-dist-val" contenteditable="true">150</span>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="planet-count" data-i18n="controls.planetCount">Gezegen Sayısı</label>
+                        <input type="range" id="planet-count" min="1" max="5" value="1">
+                        <span class="value-display" id="planet-count-val" contenteditable="true">1</span>
+                    </div>
+
+                    <div class="control-group checkbox-group">
+                        <label for="path-preview" data-i18n="controls.pathPreview">Gelecek Yol İzi</label>
+                        <input type="checkbox" id="path-preview">
+                    </div>
+                </div>
+
+                <div class="button-group presets">
+                    <button id="btn-realistic" class="btn secondary small"
+                        data-i18n="buttons.realistic">Gerçekçi</button>
+                    <button id="btn-ideal" class="btn highlight" data-i18n="buttons.ideal">Hızlı</button>
+                </div>
+
+                <div class="button-group main-actions">
+                    <button id="btn-reset" class="btn primary" data-i18n="buttons.reset">Baştan</button>
+                    <button id="btn-clear-trails" class="btn secondary" data-i18n="buttons.clear">İzi Sil</button>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <h3 data-i18n="info.title">Teorik Farklar</h3>
+                <p data-i18n="info.newton"><strong data-i18n="info.newtonTitle">Newton'un Kanunu:</strong> Uzay
+                    sabittir. Gezegen yıldız etrafında mükemmel, değişmeyen bir elips çizerek sonsuza dek aynı yolu
+                    izler.</p>
+                <p data-i18n="info.einstein"><strong data-i18n="info.einsteinTitle">Einstein (Genel Görelilik):</strong>
+                    Kütle, uzay-zaman örtüsünü büker (arkadaki ızgaraya bakın). Bu bükülme yıldıza yaklaştıkça artar ve
+                    gezegen her yakınlaştığında yörüngesinin biraz sapmasına (yalpalamasına) neden olur. Harika rozet
+                    deseni böyle oluşur.</p>
+            </div>
+        </aside>
+
+        <main class="simulations-container">
+            <div class="sim-panel glass-panel">
+                <h2 data-i18n="panels.newtonTitle">Newton (Klasik Fizik)</h2>
+                <canvas id="canvas-newton"></canvas>
+                <div class="overlay-stats" id="stats-newton">---</div>
+            </div>
+
+            <div class="sim-panel glass-panel">
+                <h2 data-i18n="panels.einsteinTitle">Einstein (Genel Görelilik)</h2>
+                <canvas id="canvas-einstein"></canvas>
+                <div class="overlay-stats" id="stats-einstein">---</div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
