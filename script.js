@@ -110,7 +110,7 @@ const translations = {
     }
 };
 
-let currentLang = 'tr';
+let currentLang = 'en';
 
 function updateLanguage(lang) {
     currentLang = lang;
@@ -150,6 +150,9 @@ function updateLanguage(lang) {
 
 btnTr.addEventListener('click', () => updateLanguage('tr'));
 btnEn.addEventListener('click', () => updateLanguage('en'));
+
+// Set initial English state
+updateLanguage('en');
 
 // Config
 let config = {
